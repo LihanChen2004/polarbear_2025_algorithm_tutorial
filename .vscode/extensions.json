@@ -1,0 +1,19 @@
+{
+	"recommendations": [
+		"vadimcn.vscode-lldb",
+		"llvm-vs-code-extensions.vscode-clangd",
+		"xaver.clang-format",
+        "mikoz.black-py",
+        "ms-vscode.cmake-tools",
+        "ms-iot.vscode-ros",
+        "DotJoshJohnson.xml",
+        "cschlosser.doxdocgen",
+        "DavidAnson.vscode-markdownlint",
+        "usernamehw.errorlens",
+        "redjue.git-commit-plugin",
+        "mhutchie.git-graph",
+        "GitHub.copilot",
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": []
+}
