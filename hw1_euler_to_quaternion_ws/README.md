@@ -8,6 +8,12 @@
 
 - 面向对象的节点 Node 实现
 
+- ROS TF2 坐标变换
+
+- ROS Launch 文件 (可选)
+
+- RViz2 可视化工具的使用
+
 ## 任务概述
 
 需要创建一个 ROS2 节点，完成以下功能：
@@ -102,3 +108,5 @@
     # 2Hz发布30度的yaw角
     ros2 topic pub -r 2 /hw1_clh/euler euler_to_quaternion_interface/msg/MyEuler "{roll: 0.0, pitch: 0.0, yaw: 0.5236}"
     ```
+
+    ![example](.docs/example_euler_to_quaternion.png)
