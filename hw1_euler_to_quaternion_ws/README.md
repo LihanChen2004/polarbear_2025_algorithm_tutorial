@@ -57,9 +57,9 @@
 
     - 使用 C++ 编写一个 ROS2 节点，节点的主要任务是订阅 `/euler` 话题，并发布 `/quaternion` 话题。
 
-    - **订阅者**：订阅类型为 `euler_to_quaternion_interface::msg::MyEuler` 的 `/euler` 话题。该话题发布欧拉角数据（roll, pitch, yaw）。
+        **Subscriber**：订阅类型为 `euler_to_quaternion_interface::msg::MyEuler` 的 `/euler` 话题。该话题发布欧拉角数据（roll, pitch, yaw）。
 
-    - **发布者**：将订阅到的欧拉角数据转换为四元数，并发布类型为 `euler_to_quaternion_interface::msg::MyQuaternion` 的 `/quaternion` 话题。
+        **Publisher**：将订阅到的欧拉角数据转换为四元数，并发布类型为 `euler_to_quaternion_interface::msg::MyQuaternion` 的 `/quaternion` 话题。
 
     - **转换公式**：欧拉角到四元数的转换可以使用以下公式：
 
@@ -74,27 +74,27 @@
 
     - **转换为 `geometry_msgs::msg::Quaternion` 类型**：
 
-    在发布自定义的四元数消息 `/quaternion` 后，将其转换为 ROS 的标准消息类型 `geometry_msgs::msg::Quaternion`，用于后续的坐标变换发布。
+        在发布自定义的四元数消息 `/quaternion` 后，将其转换为 ROS 的标准消息类型 `geometry_msgs::msg::Quaternion`，用于后续的坐标变换发布。
 
     - **发布 map → A 坐标变换**：
 
-    - 使用 `tf2_ros::TransformBroadcaster` 创建一个坐标变换发布器。
+        使用 `tf2_ros::TransformBroadcaster` 创建一个坐标变换发布器。
 
-    - 在 ROS2 中，创建从 `map` 坐标系到 `A` 坐标系的变换，`A` 坐标系的旋转来自于上一步的四元数（`geometry_msgs::msg::Quaternion`）。
+        在 ROS2 中，创建从 `map` 坐标系到 `A` 坐标系的变换，`A` 坐标系的旋转来自于上一步的四元数（`geometry_msgs::msg::Quaternion`）。
 
-    - 不需要添加任何平移，保持 `A` 的平移为 `x=0, y=0, z=0`。
+        不需要添加任何平移，保持 `A` 的平移为 `x=0, y=0, z=0`。
 
     - **发布 map → B 坐标变换**：
 
-    - 在 `A` 坐标系的基础上，添加平移偏置 `x=1, y=1, z=2`，并创建 `map → B` 的坐标变换。
+        在 `A` 坐标系的基础上，添加平移偏置 `x=1, y=1, z=2`，并创建 `map → B` 的坐标变换。
 
-    - 该坐标变换的旋转部分依然使用上一步中的四元数。
+        该坐标变换的旋转部分依然使用上一步中的四元数。
 
     - **在 RViz2 中显示变换**：
 
-    - 启动 RViz2，并添加 `TF` 显示类型。确保能够看到 `map`、`A`、`B` 坐标系。
+        启动 RViz2，并添加 `TF` 显示类型。确保能够看到 `map`、`A`、`B` 坐标系。
 
-    - 观察 `map → A` 和 `map → B` 的坐标系变换是否正确。
+        观察 `map → A` 和 `map → B` 的坐标系变换是否正确。
 
 4. 测试：
 
